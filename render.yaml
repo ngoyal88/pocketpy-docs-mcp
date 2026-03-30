@@ -1,0 +1,18 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+# After push, use Dashboard → Blueprints → New Blueprint Instance (or link repo and apply).
+
+services:
+  - type: web
+    name: pocketpy-docs-mcp
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.11"
+      # Optional: uncomment if docs.json is not at repo root next to server.py
+      # - key: DOCS_PATH
+      #   value: /opt/render/project/src/docs.json
