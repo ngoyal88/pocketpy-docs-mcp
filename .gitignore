@@ -1,0 +1,23 @@
+node_modules
+npm-debug.log*
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Environment / secrets
+.env
+.env.local
+
+# Logs
+logs
+*.log
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.cursor/
+render-notes.md
+
+
