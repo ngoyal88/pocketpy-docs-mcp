@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
@@ -27,8 +28,14 @@ except Exception as exc:  # pragma: no cover
     docs_data = []
 
 
-mcp = FastMCP("pocketpy-docs", stateless_http=True, json_response=True)
-
+mcp = FastMCP(
+    "pocketpy-docs", 
+    stateless_http=True, 
+    json_response=True,
+    transport_security=TransportSecuritySettings(
+        enable_dns_rebinding_protection=False
+    )
+)
 
 def _search_docs(query: str, limit: int = 3):
     if not query or not docs_data:
