@@ -28,8 +28,6 @@ except Exception as exc:  # pragma: no cover
 
 
 mcp = FastMCP("pocketpy-docs", stateless_http=True, json_response=True)
-# Serve MCP at https://host/mcp (not /mcp/mcp)
-mcp.settings.streamable_http_path = "/"
 
 
 def _search_docs(query: str, limit: int = 3):
@@ -114,7 +112,8 @@ starlette_app = Starlette(
     routes=[
         Route("/health", health, methods=["GET"]),
         Route("/docs.json", docs_json, methods=["GET"]),
-        Mount("/mcp", app=mcp.streamable_http_app()),
+        # Mount FastMCP's streamable HTTP app at root; it serves /mcp internally.
+        Mount("/", app=mcp.streamable_http_app()),
     ],
     lifespan=lifespan,
 )

@@ -18,4 +18,5 @@ Thumbs.db
 .vscode/
 .idea/
 .cursor/
-
+.venv311/
+_curl_mcp_init.json
